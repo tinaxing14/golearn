@@ -1,7 +1,10 @@
 // collecton types that can have different types of data
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 type Doctor struct {
 	number     int
@@ -9,7 +12,7 @@ type Doctor struct {
 	companions []string
 }
 
-func main() {
+func structs() {
 	aDocter := Doctor{
 		number:    3,
 		actorName: "dave",
@@ -44,4 +47,14 @@ func main() {
 	fmt.Println(aDoctor)
 	fmt.Println(changeDoctor)
 	fmt.Println(*changeDoctor)
+
+	// tags for struct
+
+	type Animal struct {
+		Name string `required max: "100"`
+	}
+
+	t := reflect.TypeOf(Animal{})
+	field, _ := t.FieldByName("Name")
+	fmt.Println((field.Tag))
 }
