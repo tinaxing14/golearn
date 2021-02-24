@@ -1,6 +1,8 @@
-package xu
+package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // map[string]interface{} - decoding unknown JSON data to map[string]interface{}:
 
@@ -29,3 +31,72 @@ func check(p map[string]interface{}) {
 		}
 	}
 }
+
+func main() {
+
+	var aw Writer = new(anotherWriter)
+	aw.Write([]byte("hellooooo"))
+	var w Writer = new(consoleWriter)
+	w.Write([]byte("helooooo"))
+
+	var x Incrementer = &integer{value: 1}
+	x.Increment()
+	var y Incrementer = &float{value: 1, value2: 2}
+	y.Increment()
+
+}
+
+// struct store data, interface store method definitions
+// naming convention - if the interface has only one method, it will add +er to that method as the interface name
+
+// interfaces can be used to group methods that has different receivers
+type Writer interface {
+	Write([]byte) (int, error)
+}
+
+type consoleWriter struct{}
+
+func (cw consoleWriter) Write(data []byte) (int, error) {
+	n, err := fmt.Println(string(data))
+	return n, err
+}
+
+type anotherWriter struct{}
+
+func (a anotherWriter) Write(data []byte) (int, error) {
+	n, err := fmt.Println(string(data))
+	return n, err
+}
+
+// any type that has methods associated with it can have interfaces
+
+type Incrementer interface {
+	Increment() int
+}
+
+type integer struct {
+	value int
+}
+
+type float struct {
+	value  float32
+	value2 float64
+}
+
+func (int *integer) Increment() int {
+	int.value++
+	fmt.Println(int.value)
+	return int.value
+}
+
+func (float *float) Increment() int {
+	float.value++
+	float.value2++
+	fmt.Println(float.value, float.value2)
+	return int(float.value)
+}
+
+// best practices of interfaces
+// use small interfaces
+// design functions and methods to receive interfaces whenever possible
+// if you need access to the underlying data field, it's not possible. just take in the concrete types

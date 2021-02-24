@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func functions() {
 	SayMessage("hello")
 
 	// passing pointer to the function and if the function mutate the pointer pointed value, the value outside of the function is going to be mutated
@@ -74,3 +74,6 @@ func (c *greeter) greetpointer() {
 	// mutate the greeter object outside of the function as the greeter passed in here is the pointer
 	c.name = "Peter"
 }
+
+// when pointers are passed in the functions or methods, the function can change the value in the caller
+// this is always true for data of slices and maps because they are passing by pointers under the hood.
