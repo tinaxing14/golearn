@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func mapFunc() {
+func main() {
 	var m = map[string]int{
 		"yes": 12,
 		"no":  13,

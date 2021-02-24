@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func LoopFunc() {
 	// i is available in global scope in this example
 	i := 0
 	for i < 5 {
