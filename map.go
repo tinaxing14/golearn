@@ -1,4 +1,4 @@
-package xu
+package main
 
 import "fmt"
 
