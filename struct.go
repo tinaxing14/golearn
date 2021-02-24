@@ -1,5 +1,5 @@
 // collecton types that can have different types of data
-package main
+package xu
 
 import (
 	"fmt"

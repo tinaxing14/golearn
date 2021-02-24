@@ -1,10 +1,6 @@
-package main
+package xu
 
 import "fmt"
-
-func main() {
-	Pointers()
-}
 
 func Pointers() error {
 	a := 1
